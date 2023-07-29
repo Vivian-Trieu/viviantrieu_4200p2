@@ -4,6 +4,8 @@ public class Queen {
 
     private int x;
     private int y;
+    public static final int STOP = 1;
+    public static final int GO = 0;
 
     public Queen(int x_coord, int y_coord) {
         x = x_coord;
@@ -29,16 +31,16 @@ public class Queen {
     public int moveUp (int n) {
         if (x > 0) {
             x--;
-            return 0;
+            return GO;
         }
-        return 1;
+        return STOP;
     }
 
     public int moveDown (int n) {
         if (x < n - 1) {
             x++;
-            return 0;
+            return GO;
         }
-        return 1;
+        return STOP;
     }
 }
