@@ -1,6 +1,7 @@
 package nQueenProblem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
@@ -20,31 +21,44 @@ public class Board {
     public void printBoard() {
         char[][] board = new char[n][n];
 
-        // fill board with 0's 
+        // Fill board with 0's 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                board[i][j] = '0';
-            }
+            Arrays.fill(board[i], '_');
         }
 
-        // add queens to board
+        
+        // Fill board with queens
         for (Queen q : queens) {
-            board[q.getX()][q.getY()] = '1';
+            board[q.getX()][q.getY()] = 'Q';
         }
+        
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.println(board[i][j]);
-                if (j == 7) {
-                    System.out.println();
-                } else {
-                    System.out.println(" ");
-                }
-            }
+        for (char[] row : board) {
+            System.out.println(printRow(row));;
         }
+    }
+
+    // Printer helper method
+    private String printRow(char[] row) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : row) {
+            sb.append(c).append("  ");
+        }
+        return sb.toString().trim();
     }
 
     private void addQueen(Queen q) {
-
+        if (queens.size() < n) {
+            queens.add(q);
+        }
     }
+    /* 
+    public ArrayList<Board> getSuccessors() {
+        ArrayList<Board> successors = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+
+        }
+        return successors;
+    }
+    */
 }
